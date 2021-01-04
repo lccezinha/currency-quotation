@@ -1,5 +1,5 @@
 class Quotation:
-    available_currencies = ["USD", "BRL"]
+    available_currencies = ["BRL", "USD"]
 
     def __init__(self, currency_from, currency_to, amount=0.0) -> str:
         if not type(currency_from) is str:
@@ -16,6 +16,12 @@ class Quotation:
 
         if amount < 0:
             raise AttributeError("amount must not be negative")
+
+        if not currency_from in self.available_currencies:
+            raise AttributeError(f"the given {currency_from} currency is not available, available_currencies are {self.available_currencies}")
+
+        if not currency_to in self.available_currencies:
+            raise AttributeError(f"the given {currency_to} currency is not available, available_currencies are {self.available_currencies}")
 
         self.currency_from = currency_from
         self.currency_to = currency_to
