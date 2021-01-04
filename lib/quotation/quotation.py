@@ -8,6 +8,9 @@ class Quotation:
         self.currency_to = currency_to
         self.amount = amount
 
+    def get(self):
+        return f"1 {self.currency_from} is equal to 5.2 {self.currency_to}"
+
     def __check_validations(self, currency_from, currency_to, amount):
         if not type(currency_from) is str:
             raise AttributeError("currency_from must be a string")

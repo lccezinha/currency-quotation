@@ -58,3 +58,8 @@ def test_currencies_must_not_be_equal():
     with pytest.raises(AttributeError) as error:
         assert Quotation("BRL", "BRL")
     assert str(error.value) == "currencies must not be equals"
+
+# get() tests
+
+def test_get_with_valid_data_must_return_quotation():
+    assert Quotation("USD", "BRL").get() == "1 USD is equal to 5.2 BRL"
