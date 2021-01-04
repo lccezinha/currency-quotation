@@ -29,3 +29,6 @@ class Quotation:
 
         if not currency_to in self.available_currencies:
             raise AttributeError(f"the given {currency_to} currency is not available, available_currencies are {self.available_currencies}")
+
+        if currency_from == currency_to:
+            raise AttributeError("currencies must not be equals")

@@ -51,3 +51,10 @@ def test_amount_must_be_positive_float():
     with pytest.raises(AttributeError) as error:
         assert Quotation("BRL", "USD", -1.1)
     assert str(error.value) == "amount must not be negative"
+
+# other tests
+
+def test_currencies_must_not_be_equal():
+    with pytest.raises(AttributeError) as error:
+        assert Quotation("BRL", "BRL")
+    assert str(error.value) == "currencies must not be equals"
