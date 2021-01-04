@@ -2,6 +2,13 @@ class Quotation:
     available_currencies = ["BRL", "USD"]
 
     def __init__(self, currency_from, currency_to, amount=0.0) -> str:
+        self.__check_validations(currency_from, currency_to, amount)
+
+        self.currency_from = currency_from
+        self.currency_to = currency_to
+        self.amount = amount
+
+    def __check_validations(self, currency_from, currency_to, amount):
         if not type(currency_from) is str:
             raise AttributeError("currency_from must be a string")
 
@@ -22,7 +29,3 @@ class Quotation:
 
         if not currency_to in self.available_currencies:
             raise AttributeError(f"the given {currency_to} currency is not available, available_currencies are {self.available_currencies}")
-
-        self.currency_from = currency_from
-        self.currency_to = currency_to
-        self.amount = amount
