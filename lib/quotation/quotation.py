@@ -1,7 +1,6 @@
 class Quotation:
     available_currencies = ["USD", "BRL"]
 
-
     def __init__(self, currency_from, currency_to, amount=0.0) -> str:
         if not type(currency_from) is str:
             raise AttributeError("currency_from must be a string")
