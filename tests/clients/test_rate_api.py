@@ -1,5 +1,5 @@
 from lib.quotation.clients.rate_api import RateAPI
-import pytest
+
 import requests
 import requests_mock
 import responses
@@ -30,6 +30,5 @@ def test_rate_api_get():
     rate_api = RateAPI(currency_from, currency_to)
 
     responses.add(responses.GET, url, json=response, status=200)
-    response = rate_api.get()
 
     assert rate_api.get() == "5.14"
