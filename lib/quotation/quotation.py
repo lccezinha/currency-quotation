@@ -1,7 +1,7 @@
 class Quotation:
     available_currencies = ["BRL", "USD"]
 
-    def __init__(self, currency_from, currency_to, amount=0.0) -> str:
+    def __init__(self, currency_from, currency_to, amount=1.0) -> str:
         self.__check_validations(currency_from, currency_to, amount)
 
         self.currency_from = currency_from
