@@ -1,15 +1,20 @@
+from lib.quotation.clients.awesome_api import AwesomeAPI
+from lib.quotation.clients.rate_api import RateAPI
+
 class Quotation:
     available_currencies = ["BRL", "USD"]
 
-    def __init__(self, currency_from, currency_to, amount=1.0) -> str:
+    def __init__(self, currency_from, currency_to,  client=RateAPI, amount=1.0) -> str:
         self.__check_validations(currency_from, currency_to, amount)
 
         self.currency_from = currency_from
         self.currency_to = currency_to
+        self.client = client
         self.amount = amount
 
     def get(self):
-        return f"1 {self.currency_from} is equal to 5.2 {self.currency_to}"
+        quotation = self.client(self.currency_from, self.currency_to).get()
+        return f"{self.amount} {self.currency_from} is equal to {quotation} {self.currency_to}"
 
     def __check_validations(self, currency_from, currency_to, amount):
         if not type(currency_from) is str:
