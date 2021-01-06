@@ -2,11 +2,20 @@ import pytest
 from lib.quotation.quotation import Quotation
 
 
+@pytest.fixture
+def api_client():
+    def get():
+        return "5.99"
+
+def test_quotation_with_client(api_client):
+    quotation = Quotation("BRL", "USD", client=api_client)
+    assert quotation.get() == "5.99"
+
 def test_valid_quotation_instance():
     assert Quotation("BRL", "USD")
-    assert Quotation("BRL", "USD", 1.0)
+    assert Quotation("BRL", "USD", amount=1.0)
     assert Quotation("USD", "BRL")
-    assert Quotation("USD", "BRL", 1.0)
+    assert Quotation("USD", "BRL", amount=1.0)
 
 
 # current_from tests
@@ -62,7 +71,7 @@ def test_currency_to_must_not_be_blank():
 
 def test_amount_must_be_positive_float():
     with pytest.raises(AttributeError) as error:
-        assert Quotation("BRL", "USD", -1.1)
+        assert Quotation("BRL", "USD", amount=-1.1)
     assert str(error.value) == "amount must not be negative"
 
 
@@ -78,5 +87,5 @@ def test_currencies_must_not_be_equal():
 # get() tests
 
 
-def test_get_with_valid_data_must_return_quotation():
-    assert Quotation("USD", "BRL").get() == "1 USD is equal to 5.2 BRL"
+def test_get_with_valid_data_must_return_quotation(api_client):
+    assert Quotation("USD", "BRL", client=api_client).get() == "1.0 USD is equal to 5.99 BRL"

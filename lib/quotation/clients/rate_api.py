@@ -1,5 +1,6 @@
 import requests
 
+
 class RateAPI:
     __base_url = "https://api.ratesapi.io/api/latest"
 
