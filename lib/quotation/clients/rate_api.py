@@ -5,6 +5,7 @@ class RateAPI:
     """
     Wrapper for RateAPI get endpoint.
     """
+
     __base_url = "https://api.ratesapi.io/api/latest"
 
     def __init__(self, currency_from, currency_to):

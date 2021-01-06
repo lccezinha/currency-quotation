@@ -6,6 +6,7 @@ class AwesomeAPI:
     """
     Wrapper for AwesomeAPI get endpoint.
     """
+
     __base_url = "https://economia.awesomeapi.com.br/all/"
 
     def __init__(self, currency_from, currency_to):

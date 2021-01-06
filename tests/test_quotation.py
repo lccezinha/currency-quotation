@@ -21,6 +21,11 @@ def test_quotation_with_client(api_client):
     assert quotation.get() == "1.0 BRL is equal to 3.33 USD"
 
 
+def test_quotation_with_different_amount(api_client):
+    quotation = Quotation("BRL", "USD", client=api_client, amount=2.5)
+    assert quotation.get() == "2.5 BRL is equal to 8.32 USD"
+
+
 def test_valid_quotation_instance():
     assert Quotation("BRL", "USD")
     assert Quotation("BRL", "USD", amount=1.0)

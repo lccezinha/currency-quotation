@@ -1,11 +1,13 @@
 from lib.quotation.clients.awesome_api import AwesomeAPI
 from lib.quotation.clients.rate_api import RateAPI
+from decimal import Decimal
 
 
 class Quotation:
     """
     Quotation class is the main class that will be executed to get the currency quotation values.
     """
+
     available_currencies = ["BRL", "USD", "EUR", "CAD", "BTC"]
 
     def __init__(self, currency_from, currency_to, client=RateAPI, amount=1.0) -> str:
@@ -13,19 +15,26 @@ class Quotation:
 
         self.currency_from = currency_from
         self.currency_to = currency_to
-        self.client = client
+        self.client = client(self.currency_from, self.currency_to)
         self.amount = amount
 
     def get(self) -> str:
         """
         Returns the message with currency_from to value in currency_to
         """
-        quotation = self.client(self.currency_from, self.currency_to).get()
-        return f"{self.amount} {self.currency_from} is equal to {quotation} {self.currency_to}"
+        quotation_value = self.__get_quotation_value()
+        formatted_quotation = self.__format_quotation(quotation_value)
+        return f"{self.amount} {self.currency_from} is equal to {formatted_quotation} {self.currency_to}"
+
+    def __get_quotation_value(self) -> float:
+        return self.client.get()
+
+    def __format_quotation(self, quotation) -> str:
+        return "{:.2f}".format(Decimal(quotation) * Decimal(self.amount))
 
     def __check_validations(self, currency_from, currency_to, amount):
         """
-        Check if there is any error validation when instantiate a new object. 
+        Check if there is any error validation when instantiate a new object.
         """
         if not type(currency_from) is str:
             raise AttributeError("currency_from must be a string")
