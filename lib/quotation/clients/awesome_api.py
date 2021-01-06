@@ -9,7 +9,7 @@ class AwesomeAPI:
         self.currency_from = currency_from
         self.currency_to = currency_to
 
-    def get(self):
+    def get(self) -> str:
         url = f"{self.__base_url}{self.currency_from}-{self.currency_to}"
         rates = requests.get(url).json()[self.currency_from]["bid"]
 

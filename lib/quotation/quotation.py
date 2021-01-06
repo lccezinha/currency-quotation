@@ -13,7 +13,7 @@ class Quotation:
         self.client = client
         self.amount = amount
 
-    def get(self):
+    def get(self) -> str:
         quotation = self.client(self.currency_from, self.currency_to).get()
         return f"{self.amount} {self.currency_from} is equal to {quotation} {self.currency_to}"
 
