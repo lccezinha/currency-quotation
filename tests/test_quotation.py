@@ -42,7 +42,7 @@ def test_currency_from_must_valid():
         assert Quotation("XPTO", "USD")
     assert (
         str(error.value)
-        == "the given XPTO currency is not available, available_currencies are ['BRL', 'USD']"
+        == "the given XPTO currency is not available, available_currencies are ['BRL', 'USD', 'EUR', 'CAD', 'BTC']"
     )
 
 
@@ -66,7 +66,7 @@ def test_currency_from_must_valid():
         assert Quotation("USD", "XXX")
     assert (
         str(error.value)
-        == "the given XXX currency is not available, available_currencies are ['BRL', 'USD']"
+        == "the given XXX currency is not available, available_currencies are ['BRL', 'USD', 'EUR', 'CAD', 'BTC']"
     )
 
 
