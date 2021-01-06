@@ -31,7 +31,7 @@ def test_requests_get():
 
 
 @responses.activate
-def test_rate_api_get():
+def test_awesome_api_get():
     currency_to = "BRL"
     currency_from = "USD"
     url = f"https://economia.awesomeapi.com.br/all/{currency_from}-{currency_to}"
@@ -51,8 +51,8 @@ def test_rate_api_get():
         }
     }
 
-    rate_api = AwesomeAPI(currency_from, currency_to)
+    awesome_api = AwesomeAPI(currency_from, currency_to)
 
     responses.add(responses.GET, url, json=response, status=200)
 
-    assert rate_api.get() == "5.31"
+    assert awesome_api.get() == "5.31"
