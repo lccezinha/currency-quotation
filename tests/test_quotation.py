@@ -1,15 +1,21 @@
 import pytest
 from lib.quotation.quotation import Quotation
 
+class ClientMock:
+    def __init__(self, currency_from, currency_to):
+        self.currency_from = currency_from
+        self.currency_to = currency_to
+
+    def get(self):
+        return "3.33"
 
 @pytest.fixture
 def api_client():
-    def get():
-        return "5.99"
+    return ClientMock
 
 def test_quotation_with_client(api_client):
     quotation = Quotation("BRL", "USD", client=api_client)
-    assert quotation.get() == "5.99"
+    assert quotation.get() == "1.0 BRL is equal to 3.33 USD"
 
 def test_valid_quotation_instance():
     assert Quotation("BRL", "USD")
@@ -88,4 +94,4 @@ def test_currencies_must_not_be_equal():
 
 
 def test_get_with_valid_data_must_return_quotation(api_client):
-    assert Quotation("USD", "BRL", client=api_client).get() == "1.0 USD is equal to 5.99 BRL"
+    assert Quotation("USD", "BRL", client=api_client).get() == "1.0 USD is equal to 3.33 BRL"
