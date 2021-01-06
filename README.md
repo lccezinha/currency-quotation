@@ -17,10 +17,7 @@ print(quotation) # 2.0 EUR is equal to 2.46 USD
 
 ### How to use with AwesomeAPI?
 
-AwesomeAPI
-
 ```python
-print("AwesomeAPI")
 quotation = Quotation("USD", "BRL", client=AwesomeAPI, amount=5.1).get()
 print(quotation) # 5.1 USD is equal to 26.98 BRL
 
