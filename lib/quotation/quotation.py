@@ -3,6 +3,9 @@ from lib.quotation.clients.rate_api import RateAPI
 
 
 class Quotation:
+    """
+    Quotation class is the main class that will be executed to get the currency quotation values.
+    """
     available_currencies = ["BRL", "USD", "EUR", "CAD", "BTC"]
 
     def __init__(self, currency_from, currency_to, client=RateAPI, amount=1.0) -> str:
@@ -14,10 +17,16 @@ class Quotation:
         self.amount = amount
 
     def get(self) -> str:
+        """
+        Returns the message with currency_from to value in currency_to
+        """
         quotation = self.client(self.currency_from, self.currency_to).get()
         return f"{self.amount} {self.currency_from} is equal to {quotation} {self.currency_to}"
 
     def __check_validations(self, currency_from, currency_to, amount):
+        """
+        Check if there is any error validation when instantiate a new object. 
+        """
         if not type(currency_from) is str:
             raise AttributeError("currency_from must be a string")
 
