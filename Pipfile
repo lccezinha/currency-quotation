@@ -8,6 +8,7 @@ pytest = "*"
 requests = "*"
 requests-mock = "*"
 responses = "*"
+black = "*"
 
 [dev-packages]
 

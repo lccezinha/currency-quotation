@@ -1,10 +1,11 @@
 from lib.quotation.clients.awesome_api import AwesomeAPI
 from lib.quotation.clients.rate_api import RateAPI
 
+
 class Quotation:
     available_currencies = ["BRL", "USD", "EUR", "CAD", "BTC"]
 
-    def __init__(self, currency_from, currency_to,  client=RateAPI, amount=1.0) -> str:
+    def __init__(self, currency_from, currency_to, client=RateAPI, amount=1.0) -> str:
         self.__check_validations(currency_from, currency_to, amount)
 
         self.currency_from = currency_from
