@@ -4,6 +4,9 @@ from lib.quotation.clients import RateAPI, AwesomeAPI
 if "__main__" == __name__:
     print("RateAPI")
 
+    quotation = Quotation("USD", "BRL").get()
+    print(quotation)
+
     quotation = Quotation("USD", "BRL", amount=3.10).get()
     print(quotation)
 
@@ -16,6 +19,10 @@ if "__main__" == __name__:
     print("")
 
     print("AwesomeAPI")
+
+    quotation = Quotation("USD", "BRL", client=AwesomeAPI).get()
+    print(quotation)
+
     quotation = Quotation("USD", "BRL", client=AwesomeAPI, amount=5.1).get()
     print(quotation)
 
